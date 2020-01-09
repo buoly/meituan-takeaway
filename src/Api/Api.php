@@ -47,7 +47,9 @@ class Api
 
         $sig = $this->generate_signature($this->config->request_url.$action, $params);
 
-        $url = $this->config->request_url.$action;
+        // $url = $this->config->request_url.$action;
+        $url = $this->config->request_url.$action."?sig=".$sig."&".$this->concatParams($params);
+
 
         return $this->request('POST', $url, ['form_params' => $params]);
     }
